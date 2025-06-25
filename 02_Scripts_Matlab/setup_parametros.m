@@ -68,27 +68,20 @@ g = 9.81; % [m/s^2]
 %   zs_static = zus_static - (ms * g / ks)
 % -------------------------------------------------------------------------
 
-% Força peso total sobre o pneu
+% Força peso total sobre o pneu no equilíbrio
 F_static = (ms + mus) * g;
 
-% Deflexão estática do pneu
-tire_deflection_static = F_static / kt;
+% Posição estática da massa não-suspensa (deve ser negativa)
+zus_static = -F_static / kt;
 
-% Posição inicial da massa não-suspensa (relativa à pista zr=0)
-zus_static = tire_deflection_static; % Neste caso, será um valor positivo
-
-% Deflexão estática da mola da suspensão
-susp_deflection_static = (ms * g) / ks;
-
-% Posição inicial da massa suspensa
-zs_static = zus_static + susp_deflection_static;
+% Posição estática da massa suspensa (zs > zus)
+zs_static = zus_static - (ms * g) / ks;
 
 % Vetores de condição inicial para os integradores do Simulink
-% [Posição, Velocidade]
-x0_s = [zs_static, 0];   % Condição inicial para a massa suspensa
-x0_us = [zus_static, 0]; % Condição inicial para a massa não-suspensa
+x0_s = [zs_static, 0];   % [Posição, Velocidade] para ms
+x0_us = [zus_static, 0]; % [Posição, Velocidade] para mus
 
-disp('Condições iniciais calculadas:');
+disp('Condições iniciais CORRIGIDAS calculadas:');
 fprintf('  Posição Estática de ms (zs_static): %.4f m\n', zs_static);
 fprintf('  Posição Estática de mus (zus_static): %.4f m\n', zus_static);
 
@@ -101,3 +94,29 @@ T_sim = 10; % [s]
 road_height = 0.10; % Altura da lombada [m]
 road_start_time = 2; % Início da lombada [s]
 road_duration = 1; % Duração da subida/descida da lombada [s]
+
+%% Definição do Perfil da Pista (Lombada) para o Bloco 'From Workspace'
+% -------------------------------------------------------------------------
+% Este método é mais robusto que o Signal Editor.
+% Criamos os pontos-chave da lombada e usamos interpolação linear para
+% gerar o vetor de sinal completo.
+% -------------------------------------------------------------------------
+
+disp('Gerando sinal de pista para o bloco From Workspace...');
+
+% Cria um vetor de tempo para a simulação com um passo pequeno
+dt = 0.001; % Passo de tempo para a geração do sinal
+time_vec = (0:dt:T_sim)'; % Vetor de tempo (coluna)
+
+% Define os pontos-chave da lombada (tempo, altura)
+road_key_points_time = [0, road_start_time, road_start_time + road_duration, road_start_time + 2*road_duration, T_sim];
+road_key_points_value = [0, 0, road_height, 0, 0];
+
+% Gera o vetor da pista usando interpolação linear (cria o "triângulo")
+road_vec = interp1(road_key_points_time, road_key_points_value, time_vec, 'linear');
+
+% O bloco 'From Workspace' precisa de uma matriz com o tempo na primeira
+% coluna e o sinal na segunda.
+road_signal = [time_vec, road_vec];
+
+fprintf('Sinal de pista "road_signal" criado com %d pontos.\n', length(time_vec));
