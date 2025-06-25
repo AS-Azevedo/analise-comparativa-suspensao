@@ -1,7 +1,7 @@
 # Projeto e Análise Comparativa de Sistemas de Controle de Suspensão Veicular
 
 ![Status do Projeto: Fase 1 Concluída](https://img.shields.io/badge/status-Fase%201%20Concluída-brightgreen)
-![MATLAB](https://img.shields.io/badge/MATLAB-R2024a-blue?logo=mathworks)
+![MATLAB](https://img.shields.io/badge/MATLAB-R2025a-blue?logo=mathworks)
 ![Simulink](https://img.shields.io/badge/Simulink-Control%20System-blue?logo=mathworks)
 
 Este repositório contém um projeto de portfólio que detalha o projeto, simulação e análise comparativa de múltiplos sistemas de controle de suspensão veicular, demonstrando competências essenciais em dinâmica veicular, teoria de controle e engenharia de simulação.
@@ -12,27 +12,30 @@ Este repositório contém um projeto de portfólio que detalha o projeto, simula
 
 O objetivo deste projeto é comparar o desempenho de sistemas de suspensão **passiva**, **semi-ativa (Skyhook)** e **ativa (PID e LQR)**. Utilizando um modelo de 1/4 de veículo no MATLAB/Simulink, a análise quantifica o clássico *trade-off* de engenharia entre **conforto do passageiro** e **dirigibilidade/segurança**. O sistema passivo, agora finalizado, serve como uma linha de base (baseline) quantitativa para as melhorias que serão implementadas com os sistemas controlados.
 
-### **Animação do Sistema Passivo**
+### **Dashboard Dinâmico do Sistema Passivo**
 
-*(Instrução para você: grave sua tela rodando a animação e use um software como ScreenToGif, LICEcap ou o gravador do Windows/macOS para criar um GIF. Salve o GIF em `02_Documentation/images/passive_animation.gif` e descomente a linha abaixo).*
+Para uma análise visual de causa e efeito, foi desenvolvido um dashboard que sincroniza a animação física do modelo com os gráficos de desempenho em tempo real.
+
+04_Recursos/> ![Animação 2D Suspensão Passiva](03_Resultados/passive_animation.gif)
 
 ---
 
-### **Resultados da Fase 1: Suspensão Passiva**
+### **Resultados da Fase 1: Análise da Suspensão Passiva**
 
 A simulação da linha de base foi realizada em um cenário de 25 segundos com duas perturbações (lombadas) para avaliar a resposta e a capacidade de recuperação do sistema.
 
-*(Instrução para você: rode o script `run_simulation_passive.m`, salve a figura com os 4 gráficos como `passive_results.png` na pasta `02_Documentation/images/` e descomente a linha abaixo).*
+04_Recursos/> ![Animação 2D Suspensão Passiva](03_Resultados/passive_results.png)
+
 
 #### **Análise Quantitativa**
 
-Os resultados demonstram o comportamento característico de um sistema passivo. A passagem pela lombada induz picos de aceleração no chassi, prejudicando o conforto, e causa uma variação significativa na força de contato do pneu com o solo, o que pode comprometer a dirigibilidade e a segurança em condições limite.
+Os resultados demonstram o comportamento característico de um sistema passivo. A passagem pela lombada induz picos de aceleração no chassi, prejudicando o conforto, e causa uma variação significativa na força de contato do pneu com o solo, o que pode comprometer a dirigibilidade e a segurança em condições limite. As métricas de desempenho chave foram calculadas para servirem de baseline.
 
 | Métrica de Desempenho (KPI) | Valor (Suspensão Passiva) | Descrição |
 | :--- | :--- | :--- |
-| **Conforto:** Aceleração RMS do Chassi | `[Insira o valor do seu resultado aqui]` m/s² | Mede a "vibração" sentida pelo passageiro. Menor é melhor. |
-| **Dirigibilidade:** Força Mínima no Pneu | `[Insira o valor do seu resultado aqui]` N | Indica a perda de carga no pneu. Valores negativos indicam tendência de decolagem. |
-| **Variação de Carga no Pneu** | `[Insira o valor do seu resultado aqui]` % | Variação percentual da força no pneu. Menor é melhor. |
+| **Conforto:** Aceleração RMS do Chassi | **`0.4989` m/s²** | Mede a "vibração" sentida pelo passageiro. Menor é melhor. |
+| **Dirigibilidade:** Força Mínima no Pneu | **`-704.06` N** | Indica a perda de carga no pneu. Valores mais altos são melhores. |
+| **Variação de Carga no Pneu** | **`31.09` %** | Variação percentual da força no pneu. Menor é melhor. |
 
 ---
 
@@ -43,10 +46,10 @@ Os resultados demonstram o comportamento característico de um sistema passivo. 
     * Boas práticas de simulação (configuração de solver, scripts de parâmetros, gerenciamento de caminhos).
     * Análise de estabilidade inicial e cálculo de condições de equilíbrio estático.
 * **Análise de Dados e Automação (Fase 1):**
-    * Criação de scripts MATLAB para automação do fluxo de trabalho (setup -> simulação -> pós-processamento).
+    * Criação de scripts MATLAB para automação completa do fluxo de trabalho (setup -> simulação -> pós-processamento).
     * Extração e visualização de dados com `plot` e `subplot`.
-    * Criação de animações dinâmicas para visualização de resultados.
-    * Definição e cálculo de KPIs (Métricas de Desempenho).
+    * Criação de dashboards dinâmicos e animações com `patch` e `Handle Graphics` para análise de causa e efeito.
+    * Definição e cálculo de KPIs (Métricas de Desempenho) para análise quantitativa.
 * **Teoria de Controle (Próximas Fases):**
     * Controle Semi-Ativo (Skyhook).
     * Controle Clássico (PID).
