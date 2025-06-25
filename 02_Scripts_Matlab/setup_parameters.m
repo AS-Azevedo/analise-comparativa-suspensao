@@ -9,10 +9,6 @@
 % Data:  24/06/2025
 % -------------------------------------------------------------------------
 
-clc;
-clear;
-close all;
-
 %% Parâmetros Físicos do Modelo de 1/4 de Veículo
 % Estes valores representam um veículo de passageiros típico.
 
@@ -84,6 +80,10 @@ x0_us = [zus_static, 0]; % [Posição, Velocidade] para mus
 disp('Condições iniciais CORRIGIDAS calculadas:');
 fprintf('  Posição Estática de ms (zs_static): %.4f m\n', zs_static);
 fprintf('  Posição Estática de mus (zus_static): %.4f m\n', zus_static);
+
+%% Parâmetros do Controle Semi-Ativo (Skyhook)
+cs_on = 2500;  % Amortecimento ALTO [N-s/m] (Pode ser o mesmo do passivo ou maior)
+cs_off = 150;   % Amortecimento BAIXO [N-s/m] (Um valor pequeno, mas não zero, para representar o atrito residual)
 
 %% Parâmetros da Simulação
 

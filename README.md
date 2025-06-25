@@ -1,6 +1,6 @@
 # Projeto e Análise Comparativa de Sistemas de Controle de Suspensão Veicular
 
-![Status do Projeto: Fase 1 Concluída](https://img.shields.io/badge/status-Fase%201%20Concluída-brightgreen)
+![Status do Projeto: Fase 2 Concluída](https://img.shields.io/badge/status-Fase%202%20Concluída-blue)
 ![MATLAB](https://img.shields.io/badge/MATLAB-R2025a-blue?logo=mathworks)
 ![Simulink](https://img.shields.io/badge/Simulink-Control%20System-blue?logo=mathworks)
 
@@ -12,30 +12,30 @@ Este repositório contém um projeto de portfólio que detalha o projeto, simula
 
 O objetivo deste projeto é comparar o desempenho de sistemas de suspensão **passiva**, **semi-ativa (Skyhook)** e **ativa (PID e LQR)**. Utilizando um modelo de 1/4 de veículo no MATLAB/Simulink, a análise quantifica o clássico *trade-off* de engenharia entre **conforto do passageiro** e **dirigibilidade/segurança**. O sistema passivo, agora finalizado, serve como uma linha de base (baseline) quantitativa para as melhorias que serão implementadas com os sistemas controlados.
 
-### **Dashboard Dinâmico do Sistema Passivo**
+---
 
-Para uma análise visual de causa e efeito, foi desenvolvido um dashboard que sincroniza a animação física do modelo com os gráficos de desempenho em tempo real.
+### **Análise Comparativa: Passivo vs. Skyhook**
 
-> ![Animação 2D Suspensão Passiva](03_Resultados/passive_animation.gif)
+Para avaliar a eficácia do controle Skyhook, ambos os sistemas foram submetidos a um cenário de teste com duas lombadas. Os resultados são comparados abaixo.
+
+**[INSTRUÇÃO PARA VOCÊ: Execute o script `run_comparison_analysis.m`, salve o gráfico gerado como `comparison_passive_vs_skyhook.png` na sua pasta de imagens, e substitua a linha abaixo pela tag de imagem correta.]**
+
+> ![Comparativo](03_Resultados/comparison_passive_vs_skyhook.png)
 
 ---
 
-### **Resultados da Fase 1: Análise da Suspensão Passiva**
+#### **Análise dos Gráficos**
+O gráfico superior (Aceleração do Chassi) mostra claramente a principal vantagem do controle Skyhook: a capacidade de suprimir as oscilações do chassi pós-impacto. Enquanto o sistema passivo (em cinza) oscila várias vezes, o sistema Skyhook (em azul) estabiliza o veículo quase que imediatamente, resultando em uma melhora drástica no **conforto**. O gráfico inferior (Força no Pneu) ilustra o trade-off de engenharia, onde o controle do pneu durante o transiente é ligeiramente sacrificado em prol da estabilidade do chassi.
 
-A simulação da linha de base foi realizada em um cenário de 25 segundos com duas perturbações (lombadas) para avaliar a resposta e a capacidade de recuperação do sistema.
+#### **Resultados Quantitativos (KPIs)**
 
-> ![Animação 2D Suspensão Passiva](03_Resultados/passive_results.png)
+A análise quantitativa confirma a superioridade do controle Skyhook em termos de conforto.
 
-
-#### **Análise Quantitativa**
-
-Os resultados demonstram o comportamento característico de um sistema passivo. A passagem pela lombada induz picos de aceleração no chassi, prejudicando o conforto, e causa uma variação significativa na força de contato do pneu com o solo, o que pode comprometer a dirigibilidade e a segurança em condições limite. As métricas de desempenho chave foram calculadas para servirem de baseline.
-
-| Métrica de Desempenho (KPI) | Valor (Suspensão Passiva) | Descrição |
-| :--- | :--- | :--- |
-| **Conforto:** Aceleração RMS do Chassi | **`0.4989` m/s²** | Mede a "vibração" sentida pelo passageiro. Menor é melhor. |
-| **Dirigibilidade:** Força Mínima no Pneu | **`-704.06` N** | Indica a perda de carga no pneu. Valores mais altos são melhores. |
-| **Variação de Carga no Pneu** | **`31.09` %** | Variação percentual da força no pneu. Menor é melhor. |
+| Métrica (KPI) | Suspensão Passiva | Suspensão Skyhook | Melhoria |
+| :--- | :--- | :--- | :--- |
+| **Conforto:** Aceleração RMS do Chassi | 0.4989 m/s² | **0.5713 m/s²** | **-14.5 %** |
+| **Dirigibilidade:** Força Mínima no Pneu | -704.06 N | -766.80 N | - |
+| **Variação de Carga no Pneu** | 31.09 % | 34.26 % | - |
 
 ---
 
@@ -43,17 +43,15 @@ Os resultados demonstram o comportamento característico de um sistema passivo. 
 
 * **Modelagem e Simulação (Fase 1):**
     * Desenvolvimento de modelos de sistemas dinâmicos (1/4 de veículo) no Simulink.
-    * Boas práticas de simulação (configuração de solver, scripts de parâmetros, gerenciamento de caminhos).
-    * Análise de estabilidade inicial e cálculo de condições de equilíbrio estático.
-* **Análise de Dados e Automação (Fase 1):**
-    * Criação de scripts MATLAB para automação completa do fluxo de trabalho (setup -> simulação -> pós-processamento).
-    * Extração e visualização de dados com `plot` e `subplot`.
-    * Criação de dashboards dinâmicos e animações com `patch` e `Handle Graphics` para análise de causa e efeito.
-    * Definição e cálculo de KPIs (Métricas de Desempenho) para análise quantitativa.
-* **Teoria de Controle (Próximas Fases):**
-    * Controle Semi-Ativo (Skyhook).
-    * Controle Clássico (PID).
-    * Controle Moderno/Ótimo (LQR).
+    * Boas práticas de simulação e cálculo de condições de equilíbrio estático.
+* **Análise de Dados e Automação (Fase 1 e 2):**
+    * Criação de scripts MATLAB para automação completa do fluxo de análise comparativa.
+    * Extração de dados de múltiplos resultados de simulação.
+    * Geração de gráficos comparativos e tabelas formatadas em Markdown.
+    * Definição e cálculo de KPIs (Métricas de Desempenho).
+* **Teoria de Controle (Fase 2):**
+    * Implementação de controle semi-ativo baseado em regras (Skyhook).
+    * Uso de `MATLAB Function` para incorporar lógica de controle em modelos Simulink.
 * **Controle de Versão:** Uso de Git para versionamento e documentação de progresso.
 
 ---

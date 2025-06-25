@@ -18,7 +18,7 @@ fprintf('Parâmetros carregados com sucesso.\n\n');
 
 %% ETAPA 2: EXECUÇÃO DA SIMULAÇÃO
 fprintf('--> Etapa 2: Executando a simulação do Simulink...\n');
-model_name = 'skyhook_suspension';
+model_name = 'passive_suspension';
 current_script_path = fileparts(mfilename('fullpath'));
 project_root_path = fileparts(current_script_path);
 model_full_path = fullfile(project_root_path, '01_Modelos_Simulink', model_name);
