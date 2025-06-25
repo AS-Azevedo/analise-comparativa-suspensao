@@ -1,7 +1,7 @@
 # Projeto e Análise Comparativa de Sistemas de Controle de Suspensão Veicular
 
-![Project Status: In Development](https://img.shields.io/badge/status-em%20desenvolvimento-yellow)
-![MATLAB](https://img.shields.io/badge/MATLAB-R2025a-blue?logo=mathworks)
+![Status do Projeto: Fase 1 Concluída](https://img.shields.io/badge/status-Fase%201%20Concluída-brightgreen)
+![MATLAB](https://img.shields.io/badge/MATLAB-R2024a-blue?logo=mathworks)
 ![Simulink](https://img.shields.io/badge/Simulink-Control%20System-blue?logo=mathworks)
 
 Este repositório contém um projeto de portfólio que detalha o projeto, simulação e análise comparativa de múltiplos sistemas de controle de suspensão veicular, demonstrando competências essenciais em dinâmica veicular, teoria de controle e engenharia de simulação.
@@ -10,58 +10,61 @@ Este repositório contém um projeto de portfólio que detalha o projeto, simula
 
 ### **Sumário Executivo**
 
-O objetivo deste projeto é comparar o desempenho de sistemas de suspensão **passiva**, **semi-ativa (Skyhook)** e **ativa (PID e LQR)**. Utilizando um modelo de 1/4 de veículo no MATLAB/Simulink, a análise quantifica o clássico *trade-off* de engenharia entre **conforto do passageiro** (medido pela aceleração da massa suspensa) e **dirigibilidade/segurança** (medido pela variação da força de contato do pneu com o solo).
+O objetivo deste projeto é comparar o desempenho de sistemas de suspensão **passiva**, **semi-ativa (Skyhook)** e **ativa (PID e LQR)**. Utilizando um modelo de 1/4 de veículo no MATLAB/Simulink, a análise quantifica o clássico *trade-off* de engenharia entre **conforto do passageiro** e **dirigibilidade/segurança**. O sistema passivo, agora finalizado, serve como uma linha de base (baseline) quantitativa para as melhorias que serão implementadas com os sistemas controlados.
+
+### **Animação do Sistema Passivo**
+
+*(Instrução para você: grave sua tela rodando a animação e use um software como ScreenToGif, LICEcap ou o gravador do Windows/macOS para criar um GIF. Salve o GIF em `02_Documentation/images/passive_animation.gif` e descomente a linha abaixo).*
 
 ---
 
-### **Tecnologias e Ferramentas Utilizadas**
+### **Resultados da Fase 1: Suspensão Passiva**
 
-* **Software de Simulação:** MATLAB, Simulink
-* **Toolboxes:** Control System Toolbox
-* **Controle de Versão:** Git, GitHub
+A simulação da linha de base foi realizada em um cenário de 25 segundos com duas perturbações (lombadas) para avaliar a resposta e a capacidade de recuperação do sistema.
 
----
+*(Instrução para você: rode o script `run_simulation_passive.m`, salve a figura com os 4 gráficos como `passive_results.png` na pasta `02_Documentation/images/` e descomente a linha abaixo).*
 
-### **Competências Demonstradas**
+#### **Análise Quantitativa**
 
-Este projeto é uma demonstração prática das seguintes habilidades técnicas:
+Os resultados demonstram o comportamento característico de um sistema passivo. A passagem pela lombada induz picos de aceleração no chassi, prejudicando o conforto, e causa uma variação significativa na força de contato do pneu com o solo, o que pode comprometer a dirigibilidade e a segurança em condições limite.
 
-* **Modelagem e Simulação:**
-    * Desenvolvimento de modelos de sistemas dinâmicos (Dinâmica de Corpo Rígido) no Simulink a partir de primeiros princípios.
-    * Configuração e melhores práticas de simulação (solvers, scripts de parâmetros).
-* **Teoria de Controle:**
-    * **Controle Passivo:** Análise de sistemas de segunda ordem e estabelecimento de linha de base (baseline).
-    * **Controle Lógico/Semi-Ativo:** Implementação de controle baseado em regras (Skyhook) com `MATLAB Function`.
-    * **Controle Clássico:** Projeto e sintonia de controlador **PID** em malha fechada.
-    * **Controle Moderno/Ótimo:** Projeto de controlador **LQR (Linear Quadratic Regulator)** utilizando abordagem de Espaço de Estados.
-* **Análise de Dados e Pós-processamento:**
-    * Extração e visualização de dados de simulação com scripts MATLAB.
-    * Cálculo de métricas de desempenho (RMS, picos, etc.).
-* **Engenharia de Software (em contexto de simulação):**
-    * Organização de projetos e controle de versão (Git/GitHub).
-    * Criação de código modular e reutilizável.
+| Métrica de Desempenho (KPI) | Valor (Suspensão Passiva) | Descrição |
+| :--- | :--- | :--- |
+| **Conforto:** Aceleração RMS do Chassi | `[Insira o valor do seu resultado aqui]` m/s² | Mede a "vibração" sentida pelo passageiro. Menor é melhor. |
+| **Dirigibilidade:** Força Mínima no Pneu | `[Insira o valor do seu resultado aqui]` N | Indica a perda de carga no pneu. Valores negativos indicam tendência de decolagem. |
+| **Variação de Carga no Pneu** | `[Insira o valor do seu resultado aqui]` % | Variação percentual da força no pneu. Menor é melhor. |
 
 ---
 
-### **Resultados Preliminares**
+### **Tecnologias e Competências Demonstradas**
 
-*(Esta seção será preenchida conforme o projeto avança nas fases 1-4).*
+* **Modelagem e Simulação (Fase 1):**
+    * Desenvolvimento de modelos de sistemas dinâmicos (1/4 de veículo) no Simulink.
+    * Boas práticas de simulação (configuração de solver, scripts de parâmetros, gerenciamento de caminhos).
+    * Análise de estabilidade inicial e cálculo de condições de equilíbrio estático.
+* **Análise de Dados e Automação (Fase 1):**
+    * Criação de scripts MATLAB para automação do fluxo de trabalho (setup -> simulação -> pós-processamento).
+    * Extração e visualização de dados com `plot` e `subplot`.
+    * Criação de animações dinâmicas para visualização de resultados.
+    * Definição e cálculo de KPIs (Métricas de Desempenho).
+* **Teoria de Controle (Próximas Fases):**
+    * Controle Semi-Ativo (Skyhook).
+    * Controle Clássico (PID).
+    * Controle Moderno/Ótimo (LQR).
+* **Controle de Versão:** Uso de Git para versionamento e documentação de progresso.
 
 ---
 
 ### **Como Executar as Simulações**
 
-1.  Clone este repositório: `git clone https://github.com/[seu-usuario]/suspension-control-analysis.git`
+1.  Clone este repositório.
 2.  Abra o MATLAB.
-3.  Navegue até a pasta `01_Simulation/scripts/`.
-4.  Execute o script `setup_parameters.m` para carregar todas as variáveis no workspace.
-5.  Abra o modelo Simulink desejado da pasta `01_Simulation/models/` e execute a simulação.
+3.  Navegue até a pasta `02_Scripts_Matlab/`.
+4.  Execute o script mestre `run_simulation_passive.m` para rodar a simulação da suspensão passiva e gerar todos os resultados.
 
 ---
 
 ### **Referencial Técnico**
-
-A modelagem e as teorias de controle aplicadas neste projeto são baseadas em trabalhos clássicos da engenharia automotiva:
 
 * Gillespie, Thomas D. **"Fundamentals of Vehicle Dynamics."** SAE International, 1992.
 * Milliken, William F., and Douglas L. Milliken. **"Race Car Vehicle Dynamics."** SAE International, 1995.
