@@ -16,7 +16,7 @@ O objetivo deste projeto é comparar o desempenho de sistemas de suspensão **pa
 
 Para uma análise visual de causa e efeito, foi desenvolvido um dashboard que sincroniza a animação física do modelo com os gráficos de desempenho em tempo real.
 
-04_Recursos/> ![Animação 2D Suspensão Passiva](03_Resultados/passive_animation.gif)
+> ![Animação 2D Suspensão Passiva](03_Resultados/passive_animation.gif)
 
 ---
 
@@ -24,7 +24,7 @@ Para uma análise visual de causa e efeito, foi desenvolvido um dashboard que si
 
 A simulação da linha de base foi realizada em um cenário de 25 segundos com duas perturbações (lombadas) para avaliar a resposta e a capacidade de recuperação do sistema.
 
-04_Recursos/> ![Animação 2D Suspensão Passiva](03_Resultados/passive_results.png)
+> ![Animação 2D Suspensão Passiva](03_Resultados/passive_results.png)
 
 
 #### **Análise Quantitativa**
