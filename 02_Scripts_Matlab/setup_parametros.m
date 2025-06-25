@@ -88,7 +88,7 @@ fprintf('  Posição Estática de mus (zus_static): %.4f m\n', zus_static);
 %% Parâmetros da Simulação
 
 % Tempo total de simulação
-T_sim = 10; % [s]
+T_sim = 25; % [s]
 
 % Perfil da Pista (Lombada) - Parâmetros para o Signal Editor
 road_height = 0.10; % Altura da lombada [m]
@@ -109,8 +109,8 @@ dt = 0.001; % Passo de tempo para a geração do sinal
 time_vec = (0:dt:T_sim)'; % Vetor de tempo (coluna)
 
 % Define os pontos-chave da lombada (tempo, altura)
-road_key_points_time = [0, road_start_time, road_start_time + road_duration, road_start_time + 2*road_duration, T_sim];
-road_key_points_value = [0, 0, road_height, 0, 0];
+road_key_points_time = [0, 2, 3, 4,  15, 16, 17, T_sim]; % Primeira lombada em t=2s, Segunda em t=15s
+road_key_points_value = [0, 0, road_height, 0,  0, road_height, 0, 0];
 
 % Gera o vetor da pista usando interpolação linear (cria o "triângulo")
 road_vec = interp1(road_key_points_time, road_key_points_value, time_vec, 'linear');

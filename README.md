@@ -1,7 +1,7 @@
 # Projeto e Análise Comparativa de Sistemas de Controle de Suspensão Veicular
 
 ![Project Status: In Development](https://img.shields.io/badge/status-em%20desenvolvimento-yellow)
-![MATLAB](https://img.shields.io/badge/MATLAB-R2024a-blue?logo=mathworks)
+![MATLAB](https://img.shields.io/badge/MATLAB-R2025a-blue?logo=mathworks)
 ![Simulink](https://img.shields.io/badge/Simulink-Control%20System-blue?logo=mathworks)
 
 Este repositório contém um projeto de portfólio que detalha o projeto, simulação e análise comparativa de múltiplos sistemas de controle de suspensão veicular, demonstrando competências essenciais em dinâmica veicular, teoria de controle e engenharia de simulação.
