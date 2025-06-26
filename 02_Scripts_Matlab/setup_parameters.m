@@ -120,3 +120,8 @@ road_vec = interp1(road_key_points_time, road_key_points_value, time_vec, 'linea
 road_signal = [time_vec, road_vec];
 
 fprintf('Sinal de pista "road_signal" criado com %d pontos.\n', length(time_vec));
+
+%% Parâmetros do Controle Ativo (PID)
+Kp = 80000; % Ganho Proporcional - "Força" da reação ao erro de posição
+Ki = 25000; % Ganho Integral - Corrige erros de regime permanente
+Kd = 12000; % Ganho Derivativo - "Amortece" a resposta, evita overshoot
